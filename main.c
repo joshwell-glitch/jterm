@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int main(void)
 {
   char buffer[256];
   char command[256];
-
-  printf("> ");
-  scanf("%s", command);
+  bool isRunning = true;
 
   FILE *pipe = popen(command, "r");
   if (!pipe)
@@ -15,13 +14,23 @@ int main(void)
     return 1;
   }
 
-  do {
-    while(fgets(buffer, sizeof(buffer), pipe) != NULL)
+  while(isRunning)
+  {
+    printf("> ");
+    scanf(" %s", command);
+
+    if(command == "exit"){isRunning = false; break;}
+
+    do
     {
-      printf("%s", buffer);
+      while(fgets(buffer, sizeof(buffer), pipe) != NULL)
+      {
+        printf("%s", buffer);
+      }
     }
+    while(command != "exit");
+    command[0] = '\0';
   }
-  while(command == "exit");
 
   pclose(pipe);
   return 0;
