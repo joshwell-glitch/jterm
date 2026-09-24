@@ -3,16 +3,26 @@
 
 int main(void)
 {
-  int i = 0;
-  int *number = malloc(i * sizeof(int));
+  char buffer[256];
+  char command[256];
 
-  if(number == NULL)
+  printf("> ");
+  scanf("%s", command);
+
+  FILE *pipe = popen(command, "r");
+  if (!pipe)
   {
-    printf("Memory Allocation Failed!");
     return 1;
   }
 
-  free(number);
+  do {
+    while(fgets(buffer, sizeof(buffer), pipe) != NULL)
+    {
+      printf("%s", buffer);
+    }
+  }
+  while(command == "exit");
 
+  pclose(pipe);
   return 0;
 }
