@@ -16,6 +16,7 @@ int main(void)
 
   while(isRunning)
   {
+    printf("$USER");
     printf("> ");
     scanf(" %s", command);
 
