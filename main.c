@@ -9,22 +9,24 @@ int main(void)
   char command[256];
   bool isRunning = true;
 
-  FILE *pipe = popen(command, "r");
-  if (!pipe)
-  {
-    return 1;
-  }
-
   while(isRunning)
   {
     system("whoami && pwd");
     printf("-> ");
     fgets(command, sizeof(command), stdin);
 
-    if(strcmp(command, "exit")){return 0;}
+    for(int i = 0; command[i] != '\n'; i++)
+    {
+      printf("%c\n", command[i]);
+    }
 
+    if(strcmp(command, "exit") == 0){isRunning == 0;}
+    else{printf("not quite!\n");}
+
+    printf("%s\n", command);
+    memset(command, 0, sizeof(command));
+    printf("%s\n", command);
   }
 
-  pclose(pipe);
   return 0;
 }
