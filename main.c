@@ -10,15 +10,16 @@ int main(void)
 
   while(isRunning)
   {
-    printf("%s\n", command);
-    system("whoami && pwd");
+    system("whoami");
     printf("-> ");
     fgets(command, sizeof(command), stdin);
+    command[strcspn(command, "\n")] = '\0';
 
-    if(strcmp(command, "exit") == 0){isRunning = 0;}
-    else{printf("not quite!\n");}
+    if(strcmp(command,"exit") == 0){isRunning = 0;}
+    else{printf("Uknown argument.\n");}
 
     memset(command, 0, sizeof(command));
+    printf("\n");
   }
 
   return 0;
