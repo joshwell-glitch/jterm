@@ -16,9 +16,13 @@ int main(void)
     command[strcspn(command, "\n")] = '\0';
 
     if(strcmp(command,"exit") == 0){isRunning = 0;}
-    else{printf("Uknown argument.\n");}
+
+    FILE *pipe = popen(command, "w");
+
+    if(pipe == NULL){return 1;}
 
     memset(command, 0, sizeof(command));
+    pclose(pipe);
     printf("\n");
   }
 
