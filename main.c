@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 int main(void)
 {
@@ -16,21 +17,12 @@ int main(void)
 
   while(isRunning)
   {
-    printf("$USER");
-    printf("> ");
+    system("whoami && pwd");
+    printf("-> ");
     scanf(" %s", command);
 
-    if(command == "exit"){isRunning = false; break;}
+    if(strcmp(command, "exit")){return 0;}
 
-    do
-    {
-      while(fgets(buffer, sizeof(buffer), pipe) != NULL)
-      {
-        printf("%s", buffer);
-      }
-    }
-    while(command != "exit");
-    command[0] = '\0';
   }
 
   pclose(pipe);
