@@ -19,7 +19,7 @@ int main(void)
   {
     system("whoami && pwd");
     printf("-> ");
-    scanf(" %s", command);
+    fgets(command, sizeof(command), stdin);
 
     if(strcmp(command, "exit")){return 0;}
 
