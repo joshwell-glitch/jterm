@@ -7,6 +7,7 @@ int main(void)
 {
   char command[256];
   bool isRunning = true;
+  system("clear");
 
   while(isRunning)
   {
@@ -23,7 +24,6 @@ int main(void)
 
     memset(command, 0, sizeof(command));
     pclose(pipe);
-    printf("\n");
   }
 
   return 0;
