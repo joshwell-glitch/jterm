@@ -1,5 +1,6 @@
 # JTERM
-an ongoing terminal emulator written in C to gain more knowledge about how low-level system works.
+an developing terminal emulator written in C, this project is created to gain more knowledge about how low-level system works.
 
-functions as of now:
-- exit
+features:
+- can perform basic commands if you use bash
+- can exit
